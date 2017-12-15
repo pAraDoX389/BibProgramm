@@ -20,7 +20,8 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
-    cout << "Hier entsteht bald mehr!"; 
+    cout << "Hier entsteht bald mehr!" << "\n\n";
+    cout << "Git geht schonmal ganz gut...\n";
     return 0;
 }
 
