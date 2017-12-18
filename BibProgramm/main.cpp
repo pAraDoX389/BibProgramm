@@ -15,16 +15,18 @@
 #include <iostream>
 #include <iomanip>
 
-int a = 0;
-bool check;
+//Eigene Funktion um Eingabepuffer zulöschen und auf ein Enter zu warten
+void loescheTastaturpuffer();
+int a, key = 0;
+bool c = false;
 
 using namespace std;
 
 /*hier soll das BibProgramm entstehen
- * 
+ *Platzhalter für Dokumentationstool (z.B. Doxygen) 
  */
 int main(int argc, char** argv) {
-    //while (a!=5) {
+    while (a!=5) {
         
         // Hauptmenü
         cout << "+----------------------+" << "\n";
@@ -38,18 +40,10 @@ int main(int argc, char** argv) {
         cout << "4. Löschen\n";
         cout << "5. Programm verlassen\n\n";
         
-        //Abfrage was getaen werden soll   
         cout << "Was möchten Sie tuen?\n";
-        cin >> setw(2) >> a;
-        cin.sync();
-        cout << endl; 
-        
-        //Fehlerhafte Eingabe Abfangen -> funktioniert noch nicht
-        check = !iswdigit(a);
-        cout << "Zahl ? = " <<check << endl;
-     
-            
-        
+        cin >> setw(1) >> a;
+        cout << endl;
+           
         //Fallunterscheidung
         switch (a) {
             case 1: 
@@ -68,10 +62,19 @@ int main(int argc, char** argv) {
                 cout << "Platzhalter Beenden\n";
                 break;
             default : 
-                cout << "Falsche Eingabe\n";
+                cout << "Falsche Eingabe!" << endl << endl;
+                cin.clear();
+                cin.ignore(INT16_MAX,'\n');
+                cout << "Weiter mit Enter...";
+                loescheTastaturpuffer();
                 break;
         }
-    //}
+    }
     return 0;
 }
 
+void loescheTastaturpuffer()
+{
+   int c = 1;
+   while( ((c = getchar()) != EOF) && (c != '\n') );
+}
