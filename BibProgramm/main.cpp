@@ -14,13 +14,27 @@
 #include <cstdlib>
 #include <iostream>
 #include <iomanip>
-
-//Eigene Funktion um Eingabepuffer zulöschen und auf ein Enter zu warten
-void loescheTastaturpuffer();
-int a, key = 0;
-bool c = false;
+#include <string>
 
 using namespace std;
+
+//Eigene Funktion um Eingabepuffer zulöschen und auf ein Enter zu warten
+void clrIstrmBuf();
+int a = 0;
+
+//Erster Entwurf der eigenen Klasse
+class book {
+    string name_;
+    int booknumber_;
+    int count_;
+    string author_;
+ public:
+     // getter und setter implementieren
+     //const int getBookNumber();
+};
+
+    
+
 
 /*hier soll das BibProgramm entstehen
  *Platzhalter für Dokumentationstool (z.B. Doxygen) 
@@ -66,14 +80,14 @@ int main(int argc, char** argv) {
                 cin.clear();
                 cin.ignore(INT16_MAX,'\n');
                 cout << "Weiter mit Enter...";
-                loescheTastaturpuffer();
+                clrIstrmBuf();
                 break;
         }
     }
     return 0;
 }
 
-void loescheTastaturpuffer()
+void clrIstrmBuf()
 {
    int c = 1;
    while( ((c = getchar()) != EOF) && (c != '\n') );
