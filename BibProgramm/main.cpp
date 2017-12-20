@@ -19,7 +19,7 @@
 using namespace std;
 
 //Eigene Funktion um Eingabepuffer zulöschen und auf ein Enter zu warten
-void clrIstrmBuf();
+void clrInputBuf();
 int a = 0;
 
 //Erster Entwurf der eigenen Klasse
@@ -40,7 +40,7 @@ class book {
  *Platzhalter für Dokumentationstool (z.B. Doxygen) 
  */
 int main(int argc, char** argv) {
-    while (a!=5) {
+    while (a!=7) {
         
         // Hauptmenü
         cout << "+----------------------+" << "\n";
@@ -50,9 +50,11 @@ int main(int argc, char** argv) {
         cout << "***Hauptmenu***\n\n";
         cout << "1. Bestand anzeigen\n";
         cout << "2. Suchen nach Nummer\n";
-        cout << "3. Neues Buch hinzufügen\n";
-        cout << "4. Löschen\n";
-        cout << "5. Programm verlassen\n\n";
+        cout << "3. Ausleihen\n";
+        cout << "4. Zurückgeben\n";
+        cout << "5. Neues Buch hinzufügen\n";
+        cout << "6. Löschen\n";
+        cout << "7. Programm verlassen\n\n";
         
         cout << "Was möchten Sie tuen?\n";
         cin >> setw(1) >> a;
@@ -67,12 +69,18 @@ int main(int argc, char** argv) {
                 cout << "Platzhalter Suchen\n";
                 break;
             case 3: 
-                cout << "Platzhalter Hinzufügen\n";
+                cout << "Platzhalter Ausleihen\n";
                 break;
             case 4: 
-                cout << "Platzhalter Löschen\n";
+                cout << "Platzhalter Zurückgeben\n";
                 break;
             case 5: 
+                cout << "Platzhalter Hinzufügen\n";
+                break;
+            case 6: 
+                cout << "Platzhalter Löschen\n";
+                break;
+            case 7: 
                 cout << "Platzhalter Beenden\n";
                 break;
             default : 
@@ -80,14 +88,14 @@ int main(int argc, char** argv) {
                 cin.clear();
                 cin.ignore(INT16_MAX,'\n');
                 cout << "Weiter mit Enter...";
-                clrIstrmBuf();
+                clrInputBuf();
                 break;
         }
     }
     return 0;
 }
 
-void clrIstrmBuf()
+void clrInputBuf()
 {
    int c = 1;
    while( ((c = getchar()) != EOF) && (c != '\n') );
