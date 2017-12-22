@@ -18,27 +18,120 @@
 
 using namespace std;
 
-//Eigene Funktion um Eingabepuffer zulöschen und auf ein Enter zu warten
-void clrInputBuf();
+//globale Variabeln
+//------------------------------------------------------------------------------
 int a = 0;
 
-//Erster Entwurf der eigenen Klasse
-class book {
-    string name_;
-    int booknumber_;
-    int count_;
-    string author_;
+//Eigene Funktion um Eingabepuffer zulöschen und auf ein Enter zu warten
+//------------------------------------------------------------------------------
+void clrInputBuf();
+
+//Auslagerung für Klassendatei
+//------------------------------------------------------------------------------
+enum kind {books = 1, cd = 2};
+
+//Basisklasse 
+//------------------------------------------------------------------------------
+class Element{
+ protected:
+    Element() {}
  public:
-     // getter und setter implementieren
-     //const int getBookNumber();
+    virtual ~Element() {}
+    
+    virtual const string getTitle() = 0;
+    virtual const string getAuthor() = 0;
+    virtual const int getNumber() = 0;
+    virtual const int getActual() = 0;
+    virtual const int getQuota() = 0;
+    virtual kind getType() = 0;
+    virtual void setTitle(string value) = 0;
+    virtual void setAuthor(string value) = 0;
+    virtual void setNumber(int value) = 0;
+    virtual void setActual(int value) = 0;
+    virtual void setQuota(int value) = 0; 
+    virtual void setType(kind value) = 0;
 };
 
-    
 
+
+//1. abgeleitete Klasse
+//--------------------------------------------------------
+class Book : public Element {
+ private:
+    string title_;
+    string author_;
+    int number_;
+    int actual_;
+    int quota_;
+    kind type_ = books;
+ public:
+    const string getTitle();
+    const string getAuthor();
+    const int getNumber();
+    const int getActual();
+    const int getQuota();
+    kind getType();
+    void setTitle(string value);
+    void setAuthor(string value);
+    void setNumber(int value);
+    void setActual(int value);
+    void setQuota(int value); 
+    void setType(kind value);
+};
+
+const string Book::getTitle() {
+    return title_;
+}
+
+const string Book::getAuthor() {
+    return author_;
+}
+
+const int Book::getNumber(){
+    return number_;
+}
+
+const int Book::getActual(){
+    return actual_;
+}
+
+const int Book::getQuota() {
+    return quota_;
+}
+
+kind Book::getType() {
+    return type_;
+} 
+
+void Book::setAuthor(string value) {
+    this->author_ = value;
+}
+
+void Book::setTitle(string value) {
+    this->title_ = value;
+}
+
+void Book::setNumber(const int value){
+    this->number_ = value;
+}
+
+void Book::setActual(int value) {
+    this->actual_ = value;
+}
+
+void Book::setQuota(int value) {
+    this->quota_ = value;
+}
+
+void Book::setType(kind value) {
+    this->type_ = value;
+    return;
+}
 
 /*hier soll das BibProgramm entstehen
  *Platzhalter für Dokumentationstool (z.B. Doxygen) 
  */
+//------------------------------------------------------------------------------
 int main(int argc, char** argv) {
     while (a!=7) {
         
@@ -95,6 +188,9 @@ int main(int argc, char** argv) {
     return 0;
 }
 
+//Implementierung eigener Funktionen 
+//Auslagern!
+//------------------------------------------------------------------------------
 void clrInputBuf()
 {
    int c = 1;
