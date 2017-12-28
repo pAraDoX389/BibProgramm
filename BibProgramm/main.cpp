@@ -22,6 +22,7 @@ using namespace std;
 //------------------------------------------------------------------------------
 int a = 0;
 
+
 //Eigene Funktion um Eingabepuffer zulöschen und auf ein Enter zu warten
 //------------------------------------------------------------------------------
 void clrInputBuf();
@@ -34,7 +35,7 @@ enum kind {books = 1, cd = 2};
 //------------------------------------------------------------------------------
 class Element{
  protected:
-    Element() {}
+    //Element() {} 
  public:
     virtual ~Element() {}
     
@@ -51,8 +52,6 @@ class Element{
     virtual void setQuota(int value) = 0; 
     virtual void setType(kind value) = 0;
 };
-
-
 
 //1. abgeleitete Klasse
 //--------------------------------------------------------
@@ -128,12 +127,28 @@ void Book::setType(kind value) {
     return;
 }
 
+//Fabrikklasse
+//momentan nur als Fabrik für Book, hier soll noch erweitert werden
+//------------------------------------------------------------------------------
+class Factory {
+ public: 
+     Book* newBook();
+};
+
+Book* Factory::newBook() {
+    return new Book;
+}
+
+
 /*hier soll das BibProgramm entstehen
  *Platzhalter für Dokumentationstool (z.B. Doxygen) 
  */
 //------------------------------------------------------------------------------
 int main(int argc, char** argv) {
     while (a!=7) {
+        
+        //zum Testen
+        Book* x;
         
         // Hauptmenü
         cout << "+----------------------+" << "\n";
@@ -168,6 +183,11 @@ int main(int argc, char** argv) {
                 cout << "Platzhalter Zurückgeben\n";
                 break;
             case 5: 
+                //Implementierung nur zum Test
+                // erst eine Factory als Variable erzeugen !!!
+                x = new Book;
+                cout << "Inhalt von x:"<< x << "\n";
+                //bis hier------------------------------------------------------
                 cout << "Platzhalter Hinzufügen\n";
                 break;
             case 6: 
