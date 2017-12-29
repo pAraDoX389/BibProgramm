@@ -149,6 +149,7 @@ int main(int argc, char** argv) {
         
         //zum Testen
         Book* x;
+        Factory fab;
         
         // Hauptmenü
         cout << "+----------------------+" << "\n";
@@ -185,7 +186,7 @@ int main(int argc, char** argv) {
             case 5: 
                 //Implementierung nur zum Test
                 // erst eine Factory als Variable erzeugen !!!
-                x = new Book;
+                x = fab.newBook();
                 cout << "Inhalt von x:"<< x << "\n";
                 //bis hier------------------------------------------------------
                 cout << "Platzhalter Hinzufügen\n";
