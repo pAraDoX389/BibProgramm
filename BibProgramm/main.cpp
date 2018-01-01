@@ -20,12 +20,8 @@ using namespace std;
 
 //globale Variabeln
 //------------------------------------------------------------------------------
-int a = 0;
+int main_var = 0;
 
-
-//Eigene Funktion um Eingabepuffer zulöschen und auf ein Enter zu warten
-//------------------------------------------------------------------------------
-void clrInputBuf();
 
 //Auslagerung für Klassendatei
 //------------------------------------------------------------------------------
@@ -139,13 +135,18 @@ Book* Factory::newBook() {
     return new Book;
 }
 
+//Eigene Funktion um Eingabepuffer zulöschen und auf ein Enter zu warten
+//------------------------------------------------------------------------------
+void clrInputBuf();
+Book * createBook();
+
 
 /*hier soll das BibProgramm entstehen
  *Platzhalter für Dokumentationstool (z.B. Doxygen) 
  */
 //------------------------------------------------------------------------------
 int main(int argc, char** argv) {
-    while (a!=7) {
+    while (main_var!=7) {
         
         //zum Testen
         Book* x;
@@ -166,11 +167,12 @@ int main(int argc, char** argv) {
         cout << "7. Programm verlassen\n\n";
         
         cout << "Was möchten Sie tuen?\n";
-        cin >> setw(1) >> a;
+        cin >> setw(1) >> main_var;
+        clrInputBuf();
         cout << endl;
            
         //Fallunterscheidung
-        switch (a) {
+        switch (main_var) {
             case 1: 
                 cout << "Platzhalter Anzeigen\n";
                 break;
@@ -186,8 +188,8 @@ int main(int argc, char** argv) {
             case 5: 
                 //Implementierung nur zum Test
                 // erst eine Factory als Variable erzeugen !!!
-                x = fab.newBook();
-                cout << "Inhalt von x:"<< x << "\n";
+                x = createBook();
+                cout << x->getTitle() << endl;
                 //bis hier------------------------------------------------------
                 cout << "Platzhalter Hinzufügen\n";
                 break;
@@ -216,4 +218,31 @@ void clrInputBuf()
 {
    int c = 1;
    while( ((c = getchar()) != EOF) && (c != '\n') );
+}
+
+//Unterprogramm um ein neues Buch zu erstellen und mit de richtigen Werten zu 
+//initialisieren
+//------------------------------------------------------------------------------
+Book * createBook() {
+    
+    //Initialisierung aller benötigten variablen
+    Factory fac;
+    Book * newBook;
+    string string_var;
+    int int_var;
+    
+    //Erzeugen eines neuen Buchs
+    newBook = fac.newBook();
+   
+    //Abfragen der Werte, anschließend schreiben der Werte
+    std::cout << "Wie heißt das Buch?" << endl;
+    getline(cin, string_var);
+    clrInputBuf();
+    cout << endl;
+    newBook->setTitle(string_var);
+   
+
+    
+    
+    return newBook;
 }
