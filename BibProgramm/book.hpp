@@ -14,26 +14,29 @@
 #ifndef BOOK_HPP
 #define BOOK_HPP
 
+#include <iostream>
+#include <iomanip>
 #include <string>
+#include<limits> 
 
 class Book {
  private:
     std::string title_;
     std::string author_;
-    int number_;
+    int id_;
     int actual_;
     int quota_;
  public:
-    Book() = default;
+    Book(std::string title, std::string author, int id, int actual, int quota);
     virtual~Book() = default;
     const std::string getTitle();
     const std::string getAuthor();
-    const int getNumber();
+    const int getID();
     const int getActual();
     const int getQuota();
     void setTitle(std::string value);
     void setAuthor(std::string value);
-    void setNumber(int value);
+    void setID(int value);
     void setActual(int value);
     void setQuota(int value); 
 };
