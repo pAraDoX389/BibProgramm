@@ -5,6 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>book.hpp</itemPath>
+      <itemPath>database.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -14,6 +15,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>book.cpp</itemPath>
+      <itemPath>database.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -45,6 +47,10 @@
       </item>
       <item path="book.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="database.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="database.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -71,6 +77,10 @@
       <item path="book.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="book.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="database.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="database.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
