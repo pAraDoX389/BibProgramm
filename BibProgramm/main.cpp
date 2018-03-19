@@ -28,8 +28,8 @@ int main_var = 0;
  */
 //------------------------------------------------------------------------------
 int main(int argc, char** argv) {
+    Database& database = Database::getInstance();
     while (main_var!=7) {
-        Database database;
         
         // Hauptmenü
         std::cout << "+----------------------+" << "\n";

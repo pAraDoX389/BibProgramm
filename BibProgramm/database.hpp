@@ -22,10 +22,17 @@
 class Database {
  private:
      std::map<int, Book> database;
- public:
      Database();
+ public:
+     Database(const Database&) = delete;
+     Database& operator=(const Database&) = delete;
      ~Database() = default;
+     static Database& getInstance();
      int newElement();
+     
+     //als nächstes implementieren
+     int loadDatabase();
+     int saveDatabase();
 };
 
 #endif /* DATABASE_HPP */
