@@ -29,6 +29,7 @@ int main_var = 0;
 //------------------------------------------------------------------------------
 int main(int argc, char** argv) {
     while (main_var!=7) {
+        Database database;
         
         // Hauptmenü
         std::cout << "+----------------------+" << "\n";
@@ -63,9 +64,7 @@ int main(int argc, char** argv) {
                 std::cout << "Platzhalter Zurückgeben\n";
                 break;
             case 5: 
-                Create create;
-                create.newBook();
-                create.~Create();
+                database.newElement();
                 break;
             case 6: 
                 std::cout << "Platzhalter Löschen\n";

@@ -23,6 +23,9 @@ class Database {
  private:
      std::map<int, Book> database;
  public:
+     Database();
+     ~Database() = default;
+     int newElement();
 };
 
 #endif /* DATABASE_HPP */
