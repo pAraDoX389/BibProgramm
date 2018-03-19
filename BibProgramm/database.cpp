@@ -14,4 +14,5 @@ int Database::newElement() {
     Create create;
     auto newBook = create.newBook();
     database.emplace(newBook.getID(), newBook);
+    return 0;
 }
