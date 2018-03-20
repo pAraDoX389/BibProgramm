@@ -15,13 +15,19 @@
 #define DATABASE_HPP
 
 #include <map>
-#include <set>
+#include <fstream>
 #include "book.hpp"
 #include "../../../nlohmann_json/json/single_include/nlohmann/json.hpp"
 
+
+
+using json = nlohmann::json;
+
+
+
 class Database {
  private:
-     std::map<int, Book> database;
+     std::map<int, Book> database_;
      Database();
  public:
      Database(const Database&) = delete;
