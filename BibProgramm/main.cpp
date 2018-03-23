@@ -70,6 +70,7 @@ int main(int argc, char** argv) {
                 std::cout << "Platzhalter Löschen\n";
                 break;
             case 7: 
+                database.saveDatabase();
                 std::cout << "Platzhalter Beenden\n";
                 break;
             default : 
