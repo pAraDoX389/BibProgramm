@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
         std::cout << "\n";
         std::cout << "***Hauptmenu***\n\n";
         std::cout << "1. Bestand anzeigen\n";
-        std::cout << "2. Suchen nach Nummer\n";
+        std::cout << "2. Suchen nach ID\n";
         std::cout << "3. Ausleihen\n";
         std::cout << "4. Zurückgeben\n";
         std::cout << "5. Neues Buch hinzufügen\n";
@@ -53,10 +53,16 @@ int main(int argc, char** argv) {
         //Fallunterscheidung
         switch (main_var) {
             case 1: 
-                std::cout << "Platzhalter Anzeigen\n";
+                database.showDatabase();
+                std::cin.ignore(INT16_MAX,'\n');
+                std::cout << "Weiter mit Enter...";
+                std::cin.get();
                 break;
             case 2: 
-                std::cout << "Platzhalter Suchen\n";
+                database.showElementByID();
+                std::cin.ignore(INT16_MAX,'\n');
+                std::cout << "Weiter mit Enter...";
+                std::cin.get();
                 break;
             case 3: 
                 std::cout << "Platzhalter Ausleihen\n";
@@ -72,7 +78,6 @@ int main(int argc, char** argv) {
                 break;
             case 7: 
                 database.saveDatabase();
-                std::cout << "Platzhalter Beenden\n";
                 break;
             default : 
                 std::cout << "Falsche Eingabe!" << std::endl << std::endl;

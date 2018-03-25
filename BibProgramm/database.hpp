@@ -35,10 +35,10 @@ class Database {
      ~Database() = default;
      static Database& getInstance();
      int newElement();
-     
-     //als nächstes implementieren
      int loadDatabase();
      int saveDatabase();
+     int showDatabase();
+     int showElementByID();
 };
 
 #endif /* DATABASE_HPP */
