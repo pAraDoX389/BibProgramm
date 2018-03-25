@@ -49,6 +49,31 @@ int Database::saveDatabase() {
     
     saveBook.clear();
     saveDatabase.clear();
+    return 0;
+}
+
+int Database::loadDatabase() {
+    auto data = Database::getInstance().database_;
+    json loadDatabase;
+    
+    std::ifstream file;
+    file.open("Database.json");
+    file >> loadDatabase;
+    file.close();
+    
+    for (auto it = loadDatabase.begin(); it != loadDatabase.end(); it++) {
+        Book newBook;
+        
+        auto x = it.value();
+        newBook.setTitle(it.value()["title"]);
+        newBook.setAuthor(it.value()["author"]);
+        newBook.setID(it.value()["ID"]);
+        newBook.setActual(it.value()["actual"]);
+        newBook.setQuota(it.value()["quota"]);
+        
+        database_.emplace(newBook.getID(), newBook);
+    }
+    return 0;
 }
 
 
