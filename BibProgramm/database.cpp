@@ -76,4 +76,21 @@ int Database::loadDatabase() {
     return 0;
 }
 
+int Database::showDatabase() {
+    system("clear");
+    std::cout << "+----------------------+" << std::endl;
+    std::cout << "|   Bücherübersicht    |" << std::endl;
+    std::cout << "+----------------------+" << std::endl;
+    std::cout << std::endl;
+    for (auto it = database_.begin(); it != database_.end(); it++){
+        std::cout << "Titel: "<< it->second.getTitle() << std::endl;
+        std::cout << "Autor: "<< it->second.getAuthor() << std::endl;
+        std::cout << "Vorrätig: "<< it->second.getActual() << std::endl;
+        std::cout << "Bestand: "<< it->second.getQuota() << std::endl;
+        std::cout << std::endl;
+        std::cout << "+----------------------+" << std::endl << std::endl;
+    }
+    return 0;
+}
+
 
