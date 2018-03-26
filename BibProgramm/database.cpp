@@ -128,15 +128,17 @@ int Database::lendBook() {
     
     id = Database::askForID();
     Database::showElementByID(id);
-    
     while (1) {    
         std::cout << "Wollen Sie dieses Buch ausleihen? (j/n)";
         std::cin.clear();
         std::cin.ignore(INT16_MAX,'\n');
         std::cin >> choice;
         if (choice == "J" || choice == "j") {
-            if (database_.at(id).getActual() <= database_.at(id).getQuota()
-                    && database_.at(id).getQuota() > 0) {
+            if (database_.at(id).getActual() <= database_.at(id).getQuota()) {
+                if (database_.at(id).getActual() == 0) {
+                    std::cout << "Keine Exemplare mehr vorrätig!" << std::endl;
+                    return 1;
+                }
                 database_.at(id).setActual(database_.at(id).getActual()-1);
                 std::cout << "Ein Exemplar ausgeliehen." << std::endl;
                 std::cout << "Noch " << database_.at(id).getActual() 
@@ -157,20 +159,22 @@ int Database::returnBook() {
     int id;
     
     id = Database::askForID();
-    Database::showElementByID(id);
-    
+    Database::showElementByID(id); 
     std::cout << "Wollen Sie dieses Buch zurückgeben? (j/n)";
     std::cin.clear();
     std::cin.ignore(INT16_MAX,'\n');
     std::cin >> choice;
     if (choice == "J" || choice == "j") {
-        if (database_.at(id).getActual() < database_.at(id).getQuota()
+        if (database_.at(id).getActual() <= database_.at(id).getQuota()
                 && database_.at(id).getQuota() != database_.at(id).getActual()) {
             database_.at(id).setActual(database_.at(id).getActual()+1);
             std::cout << "Ein Exemplar zurückgegeben." << std::endl;
             std::cout << "Noch " << database_.at(id).getActual() 
                 << " Exemplare vorhanden." << std::endl;
             return 0;
+        } else {
+            std::cout << "Bücher sind schon vollzählig!" << std::endl;
+            return 1;
         }
     } else if (choice == "N" || choice == "n") {
         std::cout << "Zurückgeben abgebrochen!" << std::endl;
@@ -233,4 +237,11 @@ int Database::interactiveClear() {
         }
     }
     
+}
+
+void Database::continueRoutine() {
+    std::cout << "Weiter mit Enter..." << std::endl;
+    std::cin.clear();
+    std::cin.ignore(INT16_MAX,'\n');
+    std::cin.get();
 }

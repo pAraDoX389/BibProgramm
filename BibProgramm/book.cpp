@@ -56,7 +56,7 @@ Book::Book(std::string title, std::string author, int id, int actual, int quota)
     quota_ = quota;
 }
 
-//Erzeugungsklasse
+//Erzeugerklasse
 //------------------------------------------------------------------------------
 
 Book Create::newBook() {

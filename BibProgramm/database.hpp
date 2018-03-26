@@ -43,6 +43,7 @@ class Database {
      int lendBook();
      int returnBook();
      int interactiveClear();
+     void continueRoutine();
 
 };
 

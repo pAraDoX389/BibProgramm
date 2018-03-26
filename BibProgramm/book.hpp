@@ -42,7 +42,7 @@ class Book {
     void setQuota(int value); 
 };
 
-//Erzeugungsklasse
+//Erzeugerklasse
 //------------------------------------------------------------------------------
 class Create {
  private:    

@@ -54,50 +54,33 @@ int main(int argc, char** argv) {
         switch (main_var) {
             case 1: 
                 database.showDatabase();
-                std::cout << "Weiter mit Enter..." << std::endl;
-                std::cin.clear();
-                std::cin.ignore(INT16_MAX,'\n');
-                std::cin.get();
+                database.continueRoutine();
                 break;
             case 2: 
                 database.showElementByID(database.askForID());
-                std::cout << "Weiter mit Enter..." << std::endl;
-                std::cin.clear();
-                std::cin.ignore(INT16_MAX,'\n');
-                std::cin.get();
+                database.continueRoutine();
                 break;
             case 3: 
                 database.lendBook();
-                std::cout << "Weiter mit Enter..." << std::endl;
-                std::cin.clear();
-                std::cin.ignore(INT16_MAX,'\n');
-                std::cin.get();
+                database.continueRoutine();
                 break;
             case 4: 
                 database.returnBook();
-                std::cout << "Weiter mit Enter..." << std::endl;
-                std::cin.clear();
-                std::cin.ignore(INT16_MAX,'\n');
-                std::cin.get();
+                database.continueRoutine();
                 break;
             case 5: 
                 database.newElement();
                 break;
             case 6: 
                 database.interactiveClear();
-                std::cout << "Weiter mit Enter..." << std::endl;
-                std::cin.clear();
-                std::cin.ignore(INT16_MAX,'\n');
-                std::cin.get();
+                database.continueRoutine();
                 break;
             case 7: 
                 database.saveDatabase();
                 break;
             default : 
                 std::cout << "Falsche Eingabe!" << std::endl << std::endl;
-                std::cin.clear();
-                std::cin.ignore(INT16_MAX,'\n');
-                std::cout << "Weiter mit Enter...";
+                database.continueRoutine();
                 break;
         }
     }
