@@ -60,23 +60,38 @@ int main(int argc, char** argv) {
                 std::cin.get();
                 break;
             case 2: 
-                std::cout << "Platzhalter Suchen\n";
+                database.showElementByID(database.askForID());
+                std::cout << "Weiter mit Enter..." << std::endl;
+                std::cin.clear();
+                std::cin.ignore(INT16_MAX,'\n');
+                std::cin.get();
                 break;
             case 3: 
-                std::cout << "Platzhalter Ausleihen\n";
+                database.lendBook();
+                std::cout << "Weiter mit Enter..." << std::endl;
+                std::cin.clear();
+                std::cin.ignore(INT16_MAX,'\n');
+                std::cin.get();
                 break;
             case 4: 
-                std::cout << "Platzhalter Zurückgeben\n";
+                database.returnBook();
+                std::cout << "Weiter mit Enter..." << std::endl;
+                std::cin.clear();
+                std::cin.ignore(INT16_MAX,'\n');
+                std::cin.get();
                 break;
             case 5: 
                 database.newElement();
                 break;
             case 6: 
-                std::cout << "Platzhalter Löschen\n";
+                database.interactiveClear();
+                std::cout << "Weiter mit Enter..." << std::endl;
+                std::cin.clear();
+                std::cin.ignore(INT16_MAX,'\n');
+                std::cin.get();
                 break;
             case 7: 
                 database.saveDatabase();
-                std::cout << "Platzhalter Beenden\n";
                 break;
             default : 
                 std::cout << "Falsche Eingabe!" << std::endl << std::endl;

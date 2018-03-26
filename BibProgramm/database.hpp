@@ -35,12 +35,14 @@ class Database {
      ~Database() = default;
      static Database& getInstance();
      int newElement();
-     
-     //als nächstes implementieren
      int loadDatabase();
      int saveDatabase();
      int showDatabase();
-     int showElementByID();
+     int showElementByID(const int id);
+     int askForID();
+     int lendBook();
+     int returnBook();
+     int interactiveClear();
 
 };
 
