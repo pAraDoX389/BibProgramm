@@ -38,7 +38,10 @@ class Database {
      int loadDatabase();
      int saveDatabase();
      int showDatabase();
+<<<<<<< HEAD
      int showElementByID();
+=======
+>>>>>>> fcca3bd460bbcbb74d81fe3536f7f33cb149b69a
 };
 
 #endif /* DATABASE_HPP */
