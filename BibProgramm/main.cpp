@@ -52,7 +52,11 @@ int main(int argc, char** argv) {
         //Fallunterscheidung
         switch (main_var) {
             case 1: 
-                std::cout << "Platzhalter Anzeigen\n";
+                database.showDatabase();
+                std::cout << "Weiter mit Enter..." << std::endl;
+                std::cin.clear();
+                std::cin.ignore(INT16_MAX,'\n');
+                std::cin.get();
                 break;
             case 2: 
                 std::cout << "Platzhalter Suchen\n";
