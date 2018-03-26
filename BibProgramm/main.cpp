@@ -60,7 +60,11 @@ int main(int argc, char** argv) {
                 std::cin.get();
                 break;
             case 2: 
-                std::cout << "Platzhalter Suchen\n";
+                database.showElementByID(database.askForID());
+                std::cout << "Weiter mit Enter..." << std::endl;
+                std::cin.clear();
+                std::cin.ignore(INT16_MAX,'\n');
+                std::cin.get();
                 break;
             case 3: 
                 std::cout << "Platzhalter Ausleihen\n";
