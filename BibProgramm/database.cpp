@@ -76,6 +76,7 @@ int Database::loadDatabase() {
     return 0;
 }
 
+<<<<<<< HEAD
 int Database::showDatabase() {
     system("clear");
     std::cout << "+----------------------+" << std::endl;
@@ -100,25 +101,6 @@ int Database::showDatabase() {
 =======
 
 >>>>>>> fcca3bd460bbcbb74d81fe3536f7f33cb149b69a
+=======
+>>>>>>> parent of 54c6dc6... Anzeigen der gesamten Datenbank und Suchen nach ID implementiert
 
-int Database::showElementByID() {
-    system("clear");
-    int id = 0;
-    std::cout << "Wie lautet die ID des gesuchten Buches? " << std::endl;
-    std::cin.ignore(std::numeric_limits<int>::max(),'\n');
-    std::cin.sync();
-    std::cin >> id;
-    auto it = database_.find(id);
-    if (it != database_.end()) {
-        std::cout << "Titel: "<< it->second.getTitle() << std::endl;
-        std::cout << "ID: "<< it->second.getID() << std::endl;
-        std::cout << "Autor: "<< it->second.getAuthor() << std::endl;
-        std::cout << "Vorrätig: "<< it->second.getActual() << std::endl;
-        std::cout << "Bestand: "<< it->second.getQuota() << std::endl;
-        std::cout << std::endl;
-        return 0;
-    } else {
-        std::cout << "Kein Buch gefunden!" << std::endl;
-        return 1;
-    }
-}

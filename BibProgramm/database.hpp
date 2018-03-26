@@ -35,13 +35,18 @@ class Database {
      ~Database() = default;
      static Database& getInstance();
      int newElement();
+     
+     //als nächstes implementieren
      int loadDatabase();
      int saveDatabase();
+<<<<<<< HEAD
      int showDatabase();
 <<<<<<< HEAD
      int showElementByID();
 =======
 >>>>>>> fcca3bd460bbcbb74d81fe3536f7f33cb149b69a
+=======
+>>>>>>> parent of 54c6dc6... Anzeigen der gesamten Datenbank und Suchen nach ID implementiert
 };
 
 #endif /* DATABASE_HPP */
