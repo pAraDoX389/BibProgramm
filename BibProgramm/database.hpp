@@ -42,6 +42,7 @@ class Database {
      int askForID();
      int lendBook();
      int returnBook();
+     int interactiveClear();
 
 };
 

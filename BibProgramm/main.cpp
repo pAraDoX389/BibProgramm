@@ -84,7 +84,11 @@ int main(int argc, char** argv) {
                 database.newElement();
                 break;
             case 6: 
-                std::cout << "Platzhalter Löschen\n";
+                database.interactiveClear();
+                std::cout << "Weiter mit Enter..." << std::endl;
+                std::cin.clear();
+                std::cin.ignore(INT16_MAX,'\n');
+                std::cin.get();
                 break;
             case 7: 
                 database.saveDatabase();

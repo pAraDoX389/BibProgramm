@@ -108,6 +108,7 @@ int Database::askForID() {
 int Database::showElementByID(const int id) {
     auto it = database_.find(id);
     if (it != database_.end()) {
+        std::cout << std::endl;
         std::cout << "Titel: "<< it->second.getTitle() << std::endl;
         std::cout << "ID: "<< it->second.getID() << std::endl;
         std::cout << "Autor: "<< it->second.getAuthor() << std::endl;
@@ -177,4 +178,59 @@ int Database::returnBook() {
     } else {
         std::cout << "Falsche Eingabe!" << std::endl << std::endl;
     }
+}
+
+int Database::interactiveClear() {
+    std::string choiceString;
+    int id, choiceInt;
+    
+    std::cout << "Löschen von" << std::endl << "\t (1) einem Buch" << std::endl 
+            << "\t (2) ganzer Datenbank ?";
+    std::cin.clear();
+    std::cin.ignore(INT16_MAX,'\n');
+    std::cin >> choiceInt;
+    while (1) {
+        if (choiceInt == 1) {
+            id = Database::askForID();
+            int check = Database::showElementByID(id);
+            if (check != 0) {
+                std::cout << "Löschen abgebrochen!" << std::endl;
+                return 1;
+            }
+            std::cout << "Dieses Buch löschen? (j/n)";
+            std::cin.clear();
+            std::cin.ignore(INT16_MAX,'\n');
+            std::cin >> choiceString;
+            while (1) {
+                if (choiceString == "J" || choiceString == "j") { 
+                    database_.erase(id);
+                    return 0;
+                } else if (choiceString == "N" || choiceString == "n") {
+                    std::cout << "Löschen abgebrochen!" << std::endl;
+                    return 0;
+                } else {
+                    std::cout << "Falsche Eingabe!" << std::endl << std::endl;
+                }
+            }
+        } else if (choiceInt == 2) {
+            if (database_.size() == 0) {
+                std::cout << "Keine Bücher zum löschen vorhanden." << std::endl;
+                return 1;
+            }
+            while (1) {
+                if (choiceString == "J" || choiceString == "j") { 
+                    database_.clear();
+                    return 0;
+                } else if (choiceString == "N" || choiceString == "n") {
+                    std::cout << "Löschen abgebrochen!" << std::endl;
+                    return 0;
+                } else {
+                    std::cout << "Falsche Eingabe!" << std::endl << std::endl;
+                }
+            }
+        } else {
+            std::cout << "Falsche Eingabe!" << std::endl << std::endl;
+        }
+    }
+    
 }
