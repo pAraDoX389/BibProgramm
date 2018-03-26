@@ -96,13 +96,12 @@ int Database::showDatabase() {
 
 int Database::askForID() {
     int id;
-    
+  
     system("clear");
     std::cout << "Wie lautet die ID des gesuchten Buches?" << std::endl;
     std::cin.clear();
     std::cin.ignore();
     std::cin >> id;
-    std::cout << id << std::endl;
     return id;
 }
 
@@ -114,10 +113,68 @@ int Database::showElementByID(const int id) {
         std::cout << "Autor: "<< it->second.getAuthor() << std::endl;
         std::cout << "Vorrätig: "<< it->second.getActual() << std::endl;
         std::cout << "Bestand: "<< it->second.getQuota() << std::endl;
-        std::cout << std::endl;
+        std::cout << std::endl << std::endl;
         return 0;
     } else {
-        std::cout << "Kein Buch gefunden!" << std::endl;
+        std::cout << "Kein Buch gefunden!" << std::endl << std::endl;
         return 1;
+    }
+}
+
+int Database::lendBook() {
+    std::string choice;
+    int id;
+    
+    id = Database::askForID();
+    Database::showElementByID(id);
+    
+    while (1) {    
+        std::cout << "Wollen Sie dieses Buch ausleihen? (j/n)";
+        std::cin.clear();
+        std::cin.ignore(INT16_MAX,'\n');
+        std::cin >> choice;
+        if (choice == "J" || choice == "j") {
+            if (database_.at(id).getActual() <= database_.at(id).getQuota()
+                    && database_.at(id).getQuota() > 0) {
+                database_.at(id).setActual(database_.at(id).getActual()-1);
+                std::cout << "Ein Exemplar ausgeliehen." << std::endl;
+                std::cout << "Noch " << database_.at(id).getActual() 
+                    << " Exemplare vorhanden." << std::endl;
+                return 0;
+            }
+        } else if (choice == "N" || choice == "n") {
+            std::cout << "Ausleihen abgebrochen!" << std::endl;
+            return 0;
+        } else {
+            std::cout << "Falsche Eingabe!" << std::endl << std::endl;
+        }
+    }
+}
+
+int Database::returnBook() {
+    std::string choice;
+    int id;
+    
+    id = Database::askForID();
+    Database::showElementByID(id);
+    
+    std::cout << "Wollen Sie dieses Buch zurückgeben? (j/n)";
+    std::cin.clear();
+    std::cin.ignore(INT16_MAX,'\n');
+    std::cin >> choice;
+    if (choice == "J" || choice == "j") {
+        if (database_.at(id).getActual() < database_.at(id).getQuota()
+                && database_.at(id).getQuota() != database_.at(id).getActual()) {
+            database_.at(id).setActual(database_.at(id).getActual()+1);
+            std::cout << "Ein Exemplar zurückgegeben." << std::endl;
+            std::cout << "Noch " << database_.at(id).getActual() 
+                << " Exemplare vorhanden." << std::endl;
+            return 0;
+        }
+    } else if (choice == "N" || choice == "n") {
+        std::cout << "Zurückgeben abgebrochen!" << std::endl;
+        return 0;
+    } else {
+        std::cout << "Falsche Eingabe!" << std::endl << std::endl;
     }
 }
