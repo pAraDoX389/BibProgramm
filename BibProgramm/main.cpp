@@ -29,6 +29,7 @@ int main_var = 0;
 //------------------------------------------------------------------------------
 int main(int argc, char** argv) {
     Database& database = Database::getInstance();
+    database.loadDatabase();
     while (main_var!=7) {
         
         // Hauptmenü
@@ -74,6 +75,7 @@ int main(int argc, char** argv) {
                 std::cout << "Platzhalter Löschen\n";
                 break;
             case 7: 
+                database.saveDatabase();
                 std::cout << "Platzhalter Beenden\n";
                 break;
             default : 
