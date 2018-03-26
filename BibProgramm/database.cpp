@@ -64,7 +64,6 @@ int Database::loadDatabase() {
     for (auto it = loadDatabase.begin(); it != loadDatabase.end(); it++) {
         Book newBook;
         
-        auto x = it.value();
         newBook.setTitle(it.value()["title"]);
         newBook.setAuthor(it.value()["author"]);
         newBook.setID(it.value()["ID"]);
@@ -240,8 +239,11 @@ int Database::interactiveClear() {
 }
 
 void Database::continueRoutine() {
-    std::cout << "Weiter mit Enter..." << std::endl;
-    std::cin.clear();
-    std::cin.ignore(INT16_MAX,'\n');
-    std::cin.get();
+    char answer;
+    do {
+        std::cout << "Weiter mit Enter..." << std::endl;
+        std::cin.clear();
+        std::cin.ignore(INT16_MAX,'\n');
+        answer = std::cin.get();
+    } while (!isspace(answer));
 }

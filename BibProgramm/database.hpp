@@ -16,6 +16,7 @@
 
 #include <map>
 #include <fstream>
+#include <locale>
 #include "book.hpp"
 #include "../../../nlohmann_json/json/single_include/nlohmann/json.hpp"
 
