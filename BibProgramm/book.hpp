@@ -19,6 +19,8 @@
 #include <string>
 #include <limits> 
 
+
+
 class Book {
  private:
     std::string title_;
@@ -30,11 +32,11 @@ class Book {
     Book(std::string title = {}, std::string author = {}, int id = 0,
         int actual = 0, int quota = 0);
     virtual~Book() = default;
-    const std::string getTitle();
-    const std::string getAuthor();
-    const int getID();
-    const int getActual();
-    const int getQuota();
+    const std::string getTitle() const;
+    const std::string getAuthor() const;
+    const int getID() const;
+    const int getActual() const;
+    const int getQuota() const;
     void setTitle(std::string value);
     void setAuthor(std::string value);
     void setID(int value);
@@ -43,7 +45,6 @@ class Book {
 };
 
 //Erzeugerklasse
-//------------------------------------------------------------------------------
 class Create {
  private:    
  public:

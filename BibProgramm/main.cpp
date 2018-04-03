@@ -48,6 +48,9 @@ int main(int argc, char** argv) {
         
         std::cout << "Was möchten Sie tuen?\n";
         std::cin >> std::setw(1) >> main_var;
+        std::cin.ignore();
+        std::cin.sync();
+        std::cin.clear();
         std::cout << std::endl;
            
         //Fallunterscheidung

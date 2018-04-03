@@ -16,6 +16,7 @@ Database::Database () {
     database_.clear();
 }
 
+//erstellt neues Buch an richtiger Stelle in Datenbank
 int Database::newElement() {
     Create create;
     auto newBook = create.newBook();
@@ -28,7 +29,8 @@ Database& Database::getInstance() {
        static Database instance;
        return instance;
     };
-    
+
+//Speichern der Datenbank    
 int Database::saveDatabase() {
     auto data = Database::getInstance().database_;
     json saveDatabase = {}, saveBook = {};
@@ -52,6 +54,7 @@ int Database::saveDatabase() {
     return 0;
 }
 
+//Laden der Datenbank
 int Database::loadDatabase() {
     auto data = Database::getInstance().database_;
     json loadDatabase;
@@ -75,6 +78,7 @@ int Database::loadDatabase() {
     return 0;
 }
 
+//Anzeigen der gesamten Datenbank
 int Database::showDatabase() {
     system("clear");
     std::cout << "+----------------------+" << std::endl;
@@ -93,17 +97,29 @@ int Database::showDatabase() {
     return 0;
 }
 
+//ermittelt interaktiv ID eines Buches
 int Database::askForID() {
-    int id;
+    int id ;
   
-    system("clear");
-    std::cout << "Wie lautet die ID des gesuchten Buches?" << std::endl;
-    std::cin.clear();
+    system("clear");  
+    do {
+        std::cout << "Wie lautet die ID des gesuchten Buches?" << std::endl;
+        std::cin >> id;
+        if (std::cin.good()) {
+            break;
+        }
+        id = {};
+        std::cin.ignore();
+        std::cin.sync();
+        std::cin.clear();
+    } while(1);
     std::cin.ignore();
-    std::cin >> id;
+    std::cin.sync();
+    std::cin.clear();
     return id;
 }
 
+//zeigt ein Daten eines Buches an, welches über die ID ermittelt wird
 int Database::showElementByID(const int id) {
     auto it = database_.find(id);
     if (it != database_.end()) {
@@ -121,17 +137,22 @@ int Database::showElementByID(const int id) {
     }
 }
 
+//Ausleihen eines Buches
 int Database::lendBook() {
     std::string choice;
     int id;
     
     id = Database::askForID();
-    Database::showElementByID(id);
+    int check = Database::showElementByID(id);
+    if (check != 0) {
+                std::cout << "Ausleihen abgebrochen!" << std::endl;
+                return 1;
+            }
     while (1) {    
         std::cout << "Wollen Sie dieses Buch ausleihen? (j/n)";
+        std::cin.sync();
         std::cin.clear();
-        std::cin.ignore(INT16_MAX,'\n');
-        std::cin >> choice;
+        std::getline(std::cin, choice);
         if (choice == "J" || choice == "j") {
             if (database_.at(id).getActual() <= database_.at(id).getQuota()) {
                 if (database_.at(id).getActual() == 0) {
@@ -153,45 +174,55 @@ int Database::lendBook() {
     }
 }
 
+//Zurückgeben eines Buches
 int Database::returnBook() {
     std::string choice;
     int id;
     
     id = Database::askForID();
-    Database::showElementByID(id); 
-    std::cout << "Wollen Sie dieses Buch zurückgeben? (j/n)";
-    std::cin.clear();
-    std::cin.ignore(INT16_MAX,'\n');
-    std::cin >> choice;
-    if (choice == "J" || choice == "j") {
-        if (database_.at(id).getActual() <= database_.at(id).getQuota()
-                && database_.at(id).getQuota() != database_.at(id).getActual()) {
-            database_.at(id).setActual(database_.at(id).getActual()+1);
-            std::cout << "Ein Exemplar zurückgegeben." << std::endl;
-            std::cout << "Noch " << database_.at(id).getActual() 
-                << " Exemplare vorhanden." << std::endl;
+    int check = Database::showElementByID(id);
+    if (check != 0) {
+                std::cout << "Zurückgeben abgebrochen!" << std::endl;
+                return 1;
+            }
+    while(1) {
+        std::cout << "Wollen Sie dieses Buch zurückgeben? (j/n)";
+        std::cin.sync();
+        std::cin.clear();
+        std::getline(std::cin, choice);
+        if (choice == "J" || choice == "j") {
+            if (database_.at(id).getActual() <= database_.at(id).getQuota()
+                    && database_.at(id).getQuota() != database_.at(id).getActual()) {
+                database_.at(id).setActual(database_.at(id).getActual()+1);
+                std::cout << "Ein Exemplar zurückgegeben." << std::endl;
+                std::cout << "Noch " << database_.at(id).getActual() 
+                    << " Exemplare vorhanden." << std::endl;
+                return 0;
+            } else {
+                std::cout << "Bücher sind schon vollzählig!" << std::endl;
+                return 1;
+            }
+        } else if (choice == "N" || choice == "n") {
+            std::cout << "Zurückgeben abgebrochen!" << std::endl;
             return 0;
         } else {
-            std::cout << "Bücher sind schon vollzählig!" << std::endl;
-            return 1;
+            std::cout << "Falsche Eingabe!" << std::endl << std::endl;
         }
-    } else if (choice == "N" || choice == "n") {
-        std::cout << "Zurückgeben abgebrochen!" << std::endl;
-        return 0;
-    } else {
-        std::cout << "Falsche Eingabe!" << std::endl << std::endl;
-    }
+    }   
 }
 
+//Löschen eines Buches oder der gesamten Datenbank
 int Database::interactiveClear() {
-    std::string choiceString;
-    int id, choiceInt;
+    std::string choiceString {};
+    int id, choiceInt {};
     
     std::cout << "Löschen von" << std::endl << "\t (1) einem Buch" << std::endl 
-            << "\t (2) ganzer Datenbank ?";
-    std::cin.clear();
-    std::cin.ignore(INT16_MAX,'\n');
+            << "\t (2) ganzer Datenbank ? ";
     std::cin >> choiceInt;
+    std::cin.ignore();
+    std::cin.sync();
+    std::cin.clear();
+    
     while (1) {
         if (choiceInt == 1) {
             id = Database::askForID();
@@ -200,11 +231,10 @@ int Database::interactiveClear() {
                 std::cout << "Löschen abgebrochen!" << std::endl;
                 return 1;
             }
-            std::cout << "Dieses Buch löschen? (j/n)";
-            std::cin.clear();
-            std::cin.ignore(INT16_MAX,'\n');
-            std::cin >> choiceString;
             while (1) {
+                std::cout << "Dieses Buch löschen? (j/n)";
+                std::cin.sync();
+                std::getline(std::cin, choiceString);
                 if (choiceString == "J" || choiceString == "j") { 
                     database_.erase(id);
                     return 0;
@@ -213,6 +243,7 @@ int Database::interactiveClear() {
                     return 0;
                 } else {
                     std::cout << "Falsche Eingabe!" << std::endl << std::endl;
+                    choiceString = {};
                 }
             }
         } else if (choiceInt == 2) {
@@ -221,6 +252,9 @@ int Database::interactiveClear() {
                 return 1;
             }
             while (1) {
+                std::cout << "Diese Datenbank löschen? (j/n)";
+                //std::cin.sync();
+                std::getline(std::cin, choiceString);
                 if (choiceString == "J" || choiceString == "j") { 
                     database_.clear();
                     return 0;
@@ -229,21 +263,24 @@ int Database::interactiveClear() {
                     return 0;
                 } else {
                     std::cout << "Falsche Eingabe!" << std::endl << std::endl;
+                    choiceString = {};
                 }
             }
         } else {
             std::cout << "Falsche Eingabe!" << std::endl << std::endl;
+            choiceInt = {};
         }
     }
     
 }
 
+//Unterprogramm zum Weiterschalten
 void Database::continueRoutine() {
     char answer;
     do {
-        std::cout << "Weiter mit Enter..." << std::endl;
+        std::cout << "Weiter mit Enter..." << std::endl; 
+        std::cin.sync();
         std::cin.clear();
-        std::cin.ignore(INT16_MAX,'\n');
         answer = std::cin.get();
     } while (!isspace(answer));
 }
