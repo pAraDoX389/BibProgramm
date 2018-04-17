@@ -44,7 +44,6 @@ class Database {
      int lendBook();
      int returnBook();
      int interactiveClear();
-     void continueRoutine();
 };
 
 #endif /* DATABASE_HPP */

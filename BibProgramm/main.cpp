@@ -18,6 +18,7 @@
 
 //eigene erstellte includes
 #include "database.hpp"
+#include "functions.hpp"
 
 //globale Variabeln
 //------------------------------------------------------------------------------
@@ -50,40 +51,39 @@ int main(int argc, char** argv) {
         std::cin >> std::setw(1) >> main_var;
         std::cin.ignore();
         std::cin.sync();
-        std::cin.clear();
         std::cout << std::endl;
            
         //Fallunterscheidung
         switch (main_var) {
             case 1: 
                 database.showDatabase();
-                database.continueRoutine();
+                continueRoutine();
                 break;
             case 2: 
                 database.showElementByID(database.askForID());
-                database.continueRoutine();
+                continueRoutine();
                 break;
             case 3: 
                 database.lendBook();
-                database.continueRoutine();
+                continueRoutine();
                 break;
             case 4: 
                 database.returnBook();
-                database.continueRoutine();
+                continueRoutine();
                 break;
             case 5: 
                 database.newElement();
                 break;
             case 6: 
                 database.interactiveClear();
-                database.continueRoutine();
+                continueRoutine();
                 break;
             case 7: 
                 database.saveDatabase();
                 break;
             default : 
                 std::cout << "Falsche Eingabe!" << std::endl << std::endl;
-                database.continueRoutine();
+                continueRoutine();
                 break;
         }
     }

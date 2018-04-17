@@ -5,6 +5,7 @@
  */
 
 #include "database.hpp"
+#include "functions.hpp"
 
 
 
@@ -105,17 +106,12 @@ int Database::askForID() {
     do {
         std::cout << "Wie lautet die ID des gesuchten Buches?" << std::endl;
         std::cin >> id;
+        std::cin.ignore();
         if (std::cin.good()) {
             break;
         }
         id = {};
-        std::cin.ignore();
-        std::cin.sync();
-        std::cin.clear();
     } while(1);
-    std::cin.ignore();
-    std::cin.sync();
-    std::cin.clear();
     return id;
 }
 
@@ -176,8 +172,7 @@ int Database::lendBook() {
 
 //Zurückgeben eines Buches
 int Database::returnBook() {
-    std::string choice;
-    int id;
+    int choice {}, id {};
     
     id = Database::askForID();
     int check = Database::showElementByID(id);
@@ -185,14 +180,12 @@ int Database::returnBook() {
                 std::cout << "Zurückgeben abgebrochen!" << std::endl;
                 return 1;
             }
-    while(1) {
-        std::cout << "Wollen Sie dieses Buch zurückgeben? (j/n)";
-        std::cin.sync();
-        std::cin.clear();
-        std::getline(std::cin, choice);
-        if (choice == "J" || choice == "j") {
-            if (database_.at(id).getActual() <= database_.at(id).getQuota()
-                    && database_.at(id).getQuota() != database_.at(id).getActual()) {
+    
+    while (1) {
+        choice = questionYesNo("Wollen Sie dieses Buch zurückgeben?");
+        if (choice == 0) {
+            if (database_.at(id).getActual() <= database_.at(id).getQuota() && 
+                    database_.at(id).getQuota() != database_.at(id).getActual()) {
                 database_.at(id).setActual(database_.at(id).getActual()+1);
                 std::cout << "Ein Exemplar zurückgegeben." << std::endl;
                 std::cout << "Noch " << database_.at(id).getActual() 
@@ -202,13 +195,15 @@ int Database::returnBook() {
                 std::cout << "Bücher sind schon vollzählig!" << std::endl;
                 return 1;
             }
-        } else if (choice == "N" || choice == "n") {
+        } else if (choice == 1) {
             std::cout << "Zurückgeben abgebrochen!" << std::endl;
-            return 0;
-        } else {
+            return 0; 
+        } else if (choice == 2) {
             std::cout << "Falsche Eingabe!" << std::endl << std::endl;
+        } else if (choice == -1) {
+            std::cout << "Error bei der Eingabe!!!";
         }
-    }   
+    } 
 }
 
 //Löschen eines Buches oder der gesamten Datenbank
@@ -216,12 +211,21 @@ int Database::interactiveClear() {
     std::string choiceString {};
     int id, choiceInt {};
     
-    std::cout << "Löschen von" << std::endl << "\t (1) einem Buch" << std::endl 
-            << "\t (2) ganzer Datenbank ? ";
-    std::cin >> choiceInt;
-    std::cin.ignore();
-    std::cin.sync();
-    std::cin.clear();
+    while (1) {
+        int success = questionInt("Löschen von\n\t (1) einem Buch\n\t (2) ganzer Datenbank ? ",
+                    {1, 2}, choiceInt);
+        if (success == 0) {
+            break;
+        } else if (success == 1) {
+            std::cout << "Eingabe stimmt mit keiner möglichen Antwort überein!"
+                    << std::endl << std::endl;
+        } else {
+            std::cin.ignore();
+            std::cin.sync();
+            std::cin.clear();
+            while(std::cin.get()!='\n');
+        }
+    }
     
     while (1) {
         if (choiceInt == 1) {
@@ -231,14 +235,12 @@ int Database::interactiveClear() {
                 std::cout << "Löschen abgebrochen!" << std::endl;
                 return 1;
             }
-            while (1) {
-                std::cout << "Dieses Buch löschen? (j/n)";
-                std::cin.sync();
-                std::getline(std::cin, choiceString);
-                if (choiceString == "J" || choiceString == "j") { 
+            while (1) {               
+                check = questionYesNo("Dieses Buch löschen?");
+                if (check == 0) { 
                     database_.erase(id);
                     return 0;
-                } else if (choiceString == "N" || choiceString == "n") {
+                } else if (check == 1) {
                     std::cout << "Löschen abgebrochen!" << std::endl;
                     return 0;
                 } else {
@@ -252,18 +254,16 @@ int Database::interactiveClear() {
                 return 1;
             }
             while (1) {
-                std::cout << "Diese Datenbank löschen? (j/n)";
-                //std::cin.sync();
-                std::getline(std::cin, choiceString);
-                if (choiceString == "J" || choiceString == "j") { 
+                int check {};
+                check = questionYesNo("Diese Datenbank löschen?");
+                if (check == 0) { 
                     database_.clear();
                     return 0;
-                } else if (choiceString == "N" || choiceString == "n") {
+                } else if (check == 1) {
                     std::cout << "Löschen abgebrochen!" << std::endl;
                     return 0;
                 } else {
                     std::cout << "Falsche Eingabe!" << std::endl << std::endl;
-                    choiceString = {};
                 }
             }
         } else {
@@ -272,15 +272,4 @@ int Database::interactiveClear() {
         }
     }
     
-}
-
-//Unterprogramm zum Weiterschalten
-void Database::continueRoutine() {
-    char answer;
-    do {
-        std::cout << "Weiter mit Enter..." << std::endl; 
-        std::cin.sync();
-        std::cin.clear();
-        answer = std::cin.get();
-    } while (!isspace(answer));
 }

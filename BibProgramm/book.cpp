@@ -69,7 +69,6 @@ Book Create::newBook() {
     std::cout << "----------------------------" << std::endl << std::endl;
     
     std::cout << "Wie lautet der Titel des Buches? " << std::endl;
-    std::cin.ignore();
     std::getline(std::cin, title);
     
     
@@ -79,34 +78,37 @@ Book Create::newBook() {
     do {
         std::cout << "Wie lautet die ID des Buches? " << std::endl;
         std::cin >> id;
+        std::cin.ignore();
         if (std::cin.good()) {
             break;
         }
-        id = {};
         std::cin.clear();
         std::cin.ignore();
+        id = {};
     } while(1);
     
     do {
         std::cout << "Wie viele Bücher sind im Bestand? " << std::endl;
         std::cin >> quota;
+        std::cin.ignore();
         if (std::cin.good()) {
             break;
         }
-        quota = {};
         std::cin.clear();
         std::cin.ignore();
+        quota = {};       
     } while(1);
     
     do {
         std::cout << "Wieviele Bücher sind davon nicht ausgeliehen?" << std::endl;
         std::cin >> actual;
+        std::cin.ignore();
         if (std::cin.good()) {
                 break;
             }
-        actual = {};
         std::cin.clear();
         std::cin.ignore();
+        actual = {};
     } while(1);
     
     Book newBook(title, author, id, actual, quota);
