@@ -50,40 +50,39 @@ int main(int argc, char** argv) {
         std::cout << "Was möchten Sie tuen?\n";
         std::cin >> std::setw(1) >> main_var;
         std::cin.ignore();
-        std::cin.sync();
         std::cout << std::endl;
            
         //Fallunterscheidung
         switch (main_var) {
             case 1: 
                 database.showDatabase();
-                continueRoutine();
+                func::continueRoutine();
                 break;
             case 2: 
                 database.showElementByID(database.askForID());
-                continueRoutine();
+                func::continueRoutine();
                 break;
             case 3: 
                 database.lendBook();
-                continueRoutine();
+                func::continueRoutine();
                 break;
             case 4: 
                 database.returnBook();
-                continueRoutine();
+                func::continueRoutine();
                 break;
             case 5: 
                 database.newElement();
                 break;
             case 6: 
                 database.interactiveClear();
-                continueRoutine();
+                func::continueRoutine();
                 break;
             case 7: 
                 database.saveDatabase();
                 break;
             default : 
                 std::cout << "Falsche Eingabe!" << std::endl << std::endl;
-                continueRoutine();
+                func::continueRoutine();
                 break;
         }
     }

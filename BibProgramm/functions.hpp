@@ -19,12 +19,16 @@
 #include <string>
 #include <limits> 
 
+namespace func {
+
 int questionYesNo(std::string quest);
 
 int questionInt(const std::string quest, const std::vector<int> valueList, 
         int& value);
 
 void continueRoutine();
+
+}
 
 #endif /* FUNCTIONS_HPP */
 

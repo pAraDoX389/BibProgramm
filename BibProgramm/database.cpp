@@ -182,7 +182,7 @@ int Database::returnBook() {
             }
     
     while (1) {
-        choice = questionYesNo("Wollen Sie dieses Buch zurückgeben?");
+        choice = func::questionYesNo("Wollen Sie dieses Buch zurückgeben?");
         if (choice == 0) {
             if (database_.at(id).getActual() <= database_.at(id).getQuota() && 
                     database_.at(id).getQuota() != database_.at(id).getActual()) {
@@ -212,7 +212,7 @@ int Database::interactiveClear() {
     int id, choiceInt {};
     
     while (1) {
-        int success = questionInt("Löschen von\n\t (1) einem Buch\n\t (2) ganzer Datenbank ? ",
+        int success = func::questionInt("Löschen von\n\t (1) einem Buch\n\t (2) ganzer Datenbank ? ",
                     {1, 2}, choiceInt);
         if (success == 0) {
             break;
@@ -236,7 +236,7 @@ int Database::interactiveClear() {
                 return 1;
             }
             while (1) {               
-                check = questionYesNo("Dieses Buch löschen?");
+                check = func::questionYesNo("Dieses Buch löschen?");
                 if (check == 0) { 
                     database_.erase(id);
                     return 0;
@@ -255,7 +255,7 @@ int Database::interactiveClear() {
             }
             while (1) {
                 int check {};
-                check = questionYesNo("Diese Datenbank löschen?");
+                check = func::questionYesNo("Diese Datenbank löschen?");
                 if (check == 0) { 
                     database_.clear();
                     return 0;

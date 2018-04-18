@@ -8,6 +8,7 @@
 
 #include "functions.hpp"
 
+namespace func {
 
 //Unterprogramm zur Ja-/Nein-Abfrage
 int questionYesNo(std::string quest) {
@@ -75,4 +76,6 @@ void continueRoutine() {
         std::cin.clear();
         answer = std::cin.get();
     } while (!isspace(answer));
+}
+
 }
