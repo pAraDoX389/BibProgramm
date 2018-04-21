@@ -10,7 +10,16 @@
 
 namespace func {
 
-//Unterprogramm zur Ja-/Nein-Abfrage
+/**
+ * stellt eine Ja/Nein-Frage, das (j/n) wird mit angefügt
+ * 
+ * @param quest (std::string)
+ * 
+ * @return 0 für Ja,
+ *         1 für Nein,
+ *         2 für beliebige andere Eingabe,
+ *         -1 für einen Fehler
+ */
 int questionYesNo(std::string quest) {
     try {
         std::string answer {};
@@ -35,7 +44,21 @@ int questionYesNo(std::string quest) {
     }   
 }
 
-//Unterprogramm zur int-Anbfrage
+/**
+ * stellt eine Frage nach einer Ganzzahl, dazu wird die gestellte Frage 
+ * ausgegeben und value mit gegeben Werten verglichen, Rückgabewert gibt 
+ * Antwort der Frage zurück
+ * 
+ * @param quest (const std::string)
+ * 
+ * @param valueList (std::vector<int>)
+ * 
+ * @param value (int&)
+ * 
+ * @return 0 für in valueList,
+ *         1 für nicht in valueList,
+ *         -1 für einen Fehler
+ */
 int questionInt(const std::string quest, const std::vector<int> valueList, 
         int& value) {
     try { 
@@ -67,7 +90,9 @@ int questionInt(const std::string quest, const std::vector<int> valueList,
     }
 }
 
-//Unterprogramm zum Weiterschalten
+/**
+ * Funktion für "Weiter mit Enter..."
+ */
 void continueRoutine() {
     char answer;
     do {

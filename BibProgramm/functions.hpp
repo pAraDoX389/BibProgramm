@@ -9,6 +9,8 @@
  * Author: kasslernetbook
  *
  * Created on 17. April 2018, 15:59
+ * 
+ * Sammlung von Funktionen für BibProgramm
  */
 
 #ifndef FUNCTIONS_HPP

@@ -9,47 +9,109 @@
 #include "book.hpp"
 
 
-
+/**
+ * gibt Titel des Buches zurück
+ * 
+ * @return title_ (const std::string)
+ */
 const std::string Book::getTitle() const {
     return title_;
 }
 
+/**
+ * gibt Autor des Buches zurück
+ * 
+ * @return author_ (const std::string)
+ */
 const std::string Book::getAuthor() const {
     return author_;
 }
 
+/**
+ * gibt ID des Buches zurück
+ * 
+ * @return id_ (const int)
+ */
 const int Book::getID() const {
     return id_;
 }
 
+/**
+ * gibt vorhandene Anzahl an Bücher zurück
+ * 
+ * @return actual_ (const int)
+ */
 const int Book::getActual() const {
     return actual_;
 }
 
+/**
+ * gibt Bestand eines Buches zurück
+ * 
+ * @return quota_ (const int)
+ */
 const int Book::getQuota() const {
     return quota_;
 }
 
+/**
+ * setzt Autor des Buches
+ * 
+ * @param value (std::string)
+ */
 void Book::setAuthor(const std::string value) {
     this->author_ = value;
 }
 
+/**
+ * setzt Titel des Buches
+ *  
+ * @param value (int)
+ */
 void Book::setTitle(const std::string value) {
     this->title_ = value;
 }
 
+/**
+ * setzt ID des Buches
+ * 
+ * @param value (int)
+ */
 void Book::setID(const int value){
     this->id_ = value;
 }
 
+/**
+ * setzt vorhandene Anzahl an Bücher 
+ * 
+ * @param value (int)
+ */
 void Book::setActual(const int value) {
     this->actual_ = value;
 }
 
+/**
+ * setzt Bestand eines Buches 
+ * 
+ * @param value (int)
+ */
 void Book::setQuota(const int value) {
     this->quota_ = value;
 }
 
+/**
+ * Konstruktor mit default-Werten
+ * 
+ * @param title (std::string, default = {})
+ * 
+ * @param author (std::string, default = {})
+ * 
+ * @param id (int, default = 0)
+ * 
+ * @param actual (int, default = 0)
+ * 
+ * @param quota (int, default = 0)
+ */
 Book::Book(const std::string title, const std::string author, const int id, 
         const int actual, const int quota) {
     title_ = title;
@@ -59,7 +121,11 @@ Book::Book(const std::string title, const std::string author, const int id,
     quota_ = quota;
 }
 
-//Erzeugerklasse
+/**
+ * Methode zur Erzeugung eines Book-Objektes
+ * 
+ * @return newbook (Book)
+ */
 Book Create::newBook() {
     std::string title, author;
     int id, actual, quota;
@@ -75,6 +141,8 @@ Book Create::newBook() {
     std::cout << "Wie lautet der Autor des Buches? " << std::endl;
     std::getline(std::cin, author);
    
+    //TODO ID prüfen ob schon vergeben, dazu muss Database mit übergeben werden
+    
     do {
         std::cout << "Wie lautet die ID des Buches? " << std::endl;
         std::cin >> id;

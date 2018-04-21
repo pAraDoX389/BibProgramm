@@ -17,7 +17,11 @@ Database::Database () {
     database_.clear();
 }
 
-//erstellt neues Buch an richtiger Stelle in Datenbank
+/**
+ * erstellen eines neuen Elementes vom Typ book im Attribut von Database-Klasse
+ * 
+ * @return 0 wenn erfolgreich
+ */
 int Database::newElement() {
     Create create;
     auto newBook = create.newBook();
@@ -25,14 +29,28 @@ int Database::newElement() {
     return 0;
 }
 
-//static method
+/**
+ * Implementierung eines Singleton, static Methode, damit wirderreicht das die Datenbank nur einmal erzeugtwird 
+ * und dann immer auf diese zurückgegriffen wird, 
+ * 
+ * @return Instanz vom Typ Datenbankklasse
+ */
 Database& Database::getInstance() {
        static Database instance;
        return instance;
     };
 
-//Speichern der Datenbank    
+    
+/**
+* Speichert die Datenbank in einem JSON-File,
+* JSON-File heißt Database.json und liegtim Projektordner
+* 
+* @return 0 wenn erfolgreich
+*/ 
 int Database::saveDatabase() {
+    
+    //TODO Pfad des JSON-File zum Speichern durch Übergabewert veränderbar machen
+    
     auto data = Database::getInstance().database_;
     json saveDatabase = {}, saveBook = {};
     
@@ -55,8 +73,15 @@ int Database::saveDatabase() {
     return 0;
 }
 
-//Laden der Datenbank
+/**
+ * laden einer Databasekasse
+ * 
+ * @return 0 wenn erfolgreich
+ */
 int Database::loadDatabase() {
+    
+    //TODO ähnlich Save, Pfad zum Laden variabel machen 
+    
     auto data = Database::getInstance().database_;
     json loadDatabase;
     
@@ -79,7 +104,11 @@ int Database::loadDatabase() {
     return 0;
 }
 
-//Anzeigen der gesamten Datenbank
+/**
+ * zeigt ganze Datenbank an
+ * 
+ * @return 0 wenn erfolgreich
+ */
 int Database::showDatabase() {
     system("clear");
     std::cout << "+----------------------+" << std::endl;
@@ -98,7 +127,11 @@ int Database::showDatabase() {
     return 0;
 }
 
-//ermittelt interaktiv ID eines Buches
+/**
+ * fragt ab, welche ID man möchte
+ * 
+ * @return id des Buches, Rückgabe vom Typ int 
+ */
 int Database::askForID() {
     int id ;
   
@@ -115,7 +148,13 @@ int Database::askForID() {
     return id;
 }
 
-//zeigt ein Daten eines Buches an, welches über die ID ermittelt wird
+/**
+ * zeigt Element mit dem Key des Parameters id an
+ * 
+ * @param id (const int)
+ * 
+ * @return 0 wenn gefunden, 1 wenn nicht gefunden
+ */
 int Database::showElementByID(const int id) {
     auto it = database_.find(id);
     if (it != database_.end()) {
@@ -133,7 +172,12 @@ int Database::showElementByID(const int id) {
     }
 }
 
-//Ausleihen eines Buches
+/**
+ * Ausleihen eines Buches, Prüfung ob noch Bücher vorhanden sind ist integriert
+ * 
+ * @return 0 wenn ausgeliehen oder abgbrochen wird, 
+ *         1 wenn nicht gefunden oder kein Buch mehr vorhanden
+ */
 int Database::lendBook() {
     std::string choice;
     int id;
@@ -170,7 +214,13 @@ int Database::lendBook() {
     }
 }
 
-//Zurückgeben eines Buches
+/**
+ * zurückgeben eines Buches, Prüfung ob schon alle Bücher zurückgegeben 
+ * sind ist integriert
+ * 
+ * @return 0 wenn Rückgabe erfolgreich oder durch Antwort abgebrochen
+ *         1 wenn Bücher schon vollzählig
+ */
 int Database::returnBook() {
     int choice {}, id {};
     
@@ -206,7 +256,12 @@ int Database::returnBook() {
     } 
 }
 
-//Löschen eines Buches oder der gesamten Datenbank
+/**
+ * Löschen eines Buches oder der gesamten Datenbank
+ * 
+ * @return 0 wenn Löschen erfolgreich oder durch Antwort abgebrochen
+ *         1 wenn Bücher oder Database nicht vorhanden
+ */
 int Database::interactiveClear() {
     std::string choiceString {};
     int id, choiceInt {};

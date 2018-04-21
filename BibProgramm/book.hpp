@@ -9,6 +9,9 @@
  * Author: kasslernetbook
  *
  * Created on 18. März 2018, 12:07
+ * 
+ * enthält Definition von der Book-Klasse und einer Erzeuger-Klasse für 
+ * Book-Objekte
  */
 
 #ifndef BOOK_HPP

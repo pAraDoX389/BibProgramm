@@ -9,6 +9,10 @@
  * Author: ansible
  *
  * Created on 15. Dezember 2017, 19:29
+ * 
+ * Implementierung eines Bibliothekprogrammes, dient zur Verwaltung eines 
+ * kleinen Buchbestandes, Datenbank wird mit einer JSON-Datei verwaltet,
+ * 
  */
 
 #include <cstdlib>
@@ -20,13 +24,13 @@
 #include "database.hpp"
 #include "functions.hpp"
 
+//TODO Testfiles erstellen
+
 //globale Variabeln
 //------------------------------------------------------------------------------
+
 int main_var = 0;
 
-/*hier soll das BibProgramm entstehen
- *Platzhalter für Dokumentationstool (z.B. Doxygen) 
- */
 //------------------------------------------------------------------------------
 int main(int argc, char** argv) {
     Database& database = Database::getInstance();
@@ -45,8 +49,9 @@ int main(int argc, char** argv) {
         std::cout << "4. Zurückgeben\n";
         std::cout << "5. Neues Buch hinzufügen\n";
         std::cout << "6. Löschen\n";
-        std::cout << "7. Programm verlassen\n\n";
+        std::cout << "7. Programm speichern und verlassen\n\n";
         
+        //Abfrage was gemacht werden soll
         std::cout << "Was möchten Sie tuen?\n";
         std::cin >> std::setw(1) >> main_var;
         std::cin.ignore();
@@ -63,7 +68,7 @@ int main(int argc, char** argv) {
                 func::continueRoutine();
                 break;
             case 3: 
-                database.lendBook();
+                database.lendBook(); 
                 func::continueRoutine();
                 break;
             case 4: 

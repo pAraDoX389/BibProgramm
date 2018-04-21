@@ -9,6 +9,8 @@
  * Author: kasslernetbook
  *
  * Created on 18. März 2018, 22:07
+ * 
+ * Attribut ist eine Map, ID des Buches ist der Key, Element vom Typ book
  */
 
 #ifndef DATABASE_HPP
@@ -27,7 +29,7 @@ using json = nlohmann::json;
 
 
 class Database {
- private:
+private:
      std::map<int, Book> database_;
      Database();
  public:
