@@ -21,6 +21,7 @@
 #include <iomanip>
 #include <string>
 #include <limits> 
+#include <vector>
 
 
 
@@ -51,9 +52,10 @@ class Book {
 class Create {
  private:    
  public:
-    Create() =default;
+    Create() = default;
     ~Create() = default;
-    Book newBook();
+    Book newBook(const std::vector<int> keys);
+    bool isElementOf(const std::vector<int> keys, const int value);
 };
 
 #endif /* BOOK_HPP */

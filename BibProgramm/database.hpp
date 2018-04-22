@@ -38,14 +38,15 @@ private:
      ~Database() = default;
      static Database& getInstance();
      int newElement();
-     int loadDatabase();
-     int saveDatabase();
+     int loadDatabase(const std::string loadPath);
+     int saveDatabase(const std::string savePath);
      int showDatabase();
      int showElementByID(const int id);
      int askForID();
      int lendBook();
      int returnBook();
      int interactiveClear();
+     const std::vector<int> getKeys();
 };
 
 #endif /* DATABASE_HPP */

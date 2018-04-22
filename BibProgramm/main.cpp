@@ -34,7 +34,7 @@ int main_var = 0;
 //------------------------------------------------------------------------------
 int main(int argc, char** argv) {
     Database& database = Database::getInstance();
-    database.loadDatabase();
+    database.loadDatabase("Database.json");
     while (main_var!=7) {
         
         // Hauptmenü
@@ -83,7 +83,7 @@ int main(int argc, char** argv) {
                 func::continueRoutine();
                 break;
             case 7: 
-                database.saveDatabase();
+                database.saveDatabase("Database.json"); 
                 break;
             default : 
                 std::cout << "Falsche Eingabe!" << std::endl << std::endl;

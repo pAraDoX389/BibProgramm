@@ -24,14 +24,17 @@ Database::Database () {
  */
 int Database::newElement() {
     Create create;
-    auto newBook = create.newBook();
+   
+    auto IDList = this->getKeys();
+    auto newBook = create.newBook(IDList);
     database_.emplace(newBook.getID(), newBook);
     return 0;
 }
 
 /**
- * Implementierung eines Singleton, static Methode, damit wirderreicht das die Datenbank nur einmal erzeugtwird 
- * und dann immer auf diese zurückgegriffen wird, 
+ * Implementierung eines Singleton, static Methode, damit wird erreicht das 
+ * die Datenbank nur einmal erzeugtwird und dann immer auf diese zurück 
+ * gegriffen wird 
  * 
  * @return Instanz vom Typ Datenbankklasse
  */
@@ -39,17 +42,16 @@ Database& Database::getInstance() {
        static Database instance;
        return instance;
     };
-
     
 /**
 * Speichert die Datenbank in einem JSON-File,
 * JSON-File heißt Database.json und liegtim Projektordner
 * 
+* @param savePath (std::string), Pfad ist relativ zum Projektordner
+* 
 * @return 0 wenn erfolgreich
 */ 
-int Database::saveDatabase() {
-    
-    //TODO Pfad des JSON-File zum Speichern durch Übergabewert veränderbar machen
+int Database::saveDatabase(const std::string savePath) {
     
     auto data = Database::getInstance().database_;
     json saveDatabase = {}, saveBook = {};
@@ -64,7 +66,7 @@ int Database::saveDatabase() {
     }
     
     std::ofstream file;
-    file.open("Database.json");
+    file.open(savePath);
     file << saveDatabase;
     file.close();
     
@@ -76,17 +78,17 @@ int Database::saveDatabase() {
 /**
  * laden einer Databasekasse
  * 
+ * @loadPath (std::string), Pfad ist relativ zum Projektordner
+ * 
  * @return 0 wenn erfolgreich
  */
-int Database::loadDatabase() {
-    
-    //TODO ähnlich Save, Pfad zum Laden variabel machen 
+int Database::loadDatabase(const std::string loadPath) {
     
     auto data = Database::getInstance().database_;
     json loadDatabase;
     
     std::ifstream file;
-    file.open("Database.json");
+    file.open(loadPath);
     file >> loadDatabase;
     file.close();
     
@@ -327,4 +329,19 @@ int Database::interactiveClear() {
         }
     }
     
+}
+
+/**
+ * gibt die Keys aller Elemente von database_ als Vektor zurück
+ * 
+ * @return keys (std::vector<int>)
+ */
+const std::vector<int> Database::getKeys() {
+    std::vector<int> keys {};
+    
+    for (auto& it : database_) {
+        keys.push_back(it.first);
+    }
+    
+    return keys;
 }

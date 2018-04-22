@@ -9,6 +9,7 @@
 #include "book.hpp"
 
 
+
 /**
  * gibt Titel des Buches zurück
  * 
@@ -122,11 +123,14 @@ Book::Book(const std::string title, const std::string author, const int id,
 }
 
 /**
- * Methode zur Erzeugung eines Book-Objektes
+ * Methode zur Erzeugung eines Book-Objektes, beim Anlegen des Book-Objektes 
+ * wird geprüft, ob das ID-Attribut schon vergeben ist
+ * 
+ * @param keys (std::vector<int>) Liste von Ganzzahlwerten
  * 
  * @return newbook (Book)
  */
-Book Create::newBook() {
+Book Create::newBook(const std::vector<int> keys) {
     std::string title, author;
     int id, actual, quota;
     
@@ -140,20 +144,26 @@ Book Create::newBook() {
     
     std::cout << "Wie lautet der Autor des Buches? " << std::endl;
     std::getline(std::cin, author);
-   
-    //TODO ID prüfen ob schon vergeben, dazu muss Database mit übergeben werden
     
-    do {
-        std::cout << "Wie lautet die ID des Buches? " << std::endl;
-        std::cin >> id;
-        std::cin.ignore();
-        if (std::cin.good()) {
+    while (1) {
+        do {
+            std::cout << "Wie lautet die ID des Buches? " << std::endl;
+            std::cin >> id;
+            std::cin.ignore();
+            if (std::cin.good()) {
+                    break;  
+            }
+            std::cin.clear();
+            std::cin.ignore();
+            id = {};
+        } while(1);
+        
+        if (!(this->isElementOf(keys, id))) {
             break;
         }
-        std::cin.clear();
-        std::cin.ignore();
-        id = {};
-    } while(1);
+        std::cout << "ID des Buches schon vergeben !!!" << std::endl; 
+        std::cout << std::endl;
+    } 
     
     do {
         std::cout << "Wie viele Bücher sind im Bestand? " << std::endl;
@@ -181,5 +191,24 @@ Book Create::newBook() {
     
     Book newBook(title, author, id, actual, quota);
     return newBook;
+}
+
+/**
+ * prüft ob value in keys enthalten ist
+ * 
+ * @param keys (std::vector<int>)
+ * 
+ * @param value (int)
+ * 
+ * @return true wenn value in keys enthalten
+ *         false wenn value nicht in keys enthalten
+ */
+bool Create::isElementOf(const std::vector<int> keys, const int value) {
+    for (auto it : keys) {
+        if (it == value) {
+            return true;
+        }
+    }
+    return false;
 }
 
