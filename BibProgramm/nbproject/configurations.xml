@@ -29,6 +29,7 @@
                    displayName="Important Files"
                    projectFiles="false"
                    kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/Database.json</itemPath>
       <itemPath>Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>

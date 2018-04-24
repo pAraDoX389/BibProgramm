@@ -122,6 +122,8 @@ Book::Book(const std::string title, const std::string author, const int id,
     quota_ = quota;
 }
 
+
+
 /**
  * Methode zur Erzeugung eines Book-Objektes, beim Anlegen des Book-Objektes 
  * wird geprüft, ob das ID-Attribut schon vergeben ist
@@ -181,7 +183,7 @@ Book Create::newBook(const std::vector<int> keys) {
         std::cout << "Wieviele Bücher sind davon nicht ausgeliehen?" << std::endl;
         std::cin >> actual;
         std::cin.ignore();
-        if (std::cin.good()) {
+        if (std::cin.good() && actual <= quota) {
                 break;
             }
         std::cin.clear();

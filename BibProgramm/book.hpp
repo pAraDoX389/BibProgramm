@@ -41,11 +41,11 @@ class Book {
     const int getID() const;
     const int getActual() const;
     const int getQuota() const;
-    void setTitle(std::string value);
-    void setAuthor(std::string value);
-    void setID(int value);
-    void setActual(int value);
-    void setQuota(int value); 
+    void setTitle(const std::string value);
+    void setAuthor(const std::string value);
+    void setID(const int value);
+    void setActual(const int value);
+    void setQuota(const int value); 
 };
 
 //Erzeugerklasse

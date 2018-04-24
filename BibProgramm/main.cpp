@@ -24,7 +24,6 @@
 #include "database.hpp"
 #include "functions.hpp"
 
-//TODO Testfiles erstellen
 
 //globale Variabeln
 //------------------------------------------------------------------------------
@@ -35,9 +34,9 @@ int main_var = 0;
 int main(int argc, char** argv) {
     Database& database = Database::getInstance();
     database.loadDatabase("Database.json");
-    while (main_var!=7) {
+    while (main_var != 8) {
         
-        // Hauptmenü
+        //Hauptmenü
         std::cout << "+----------------------+" << "\n";
         std::cout << "|   BibProgramm v0.0   |" << "\n";
         std::cout << "+----------------------+" << "\n";
@@ -49,7 +48,8 @@ int main(int argc, char** argv) {
         std::cout << "4. Zurückgeben\n";
         std::cout << "5. Neues Buch hinzufügen\n";
         std::cout << "6. Löschen\n";
-        std::cout << "7. Programm speichern und verlassen\n\n";
+        std::cout << "7. Programm speichern\n";
+        std::cout << "8. Programm speichern und verlassen\n\n";
         
         //Abfrage was gemacht werden soll
         std::cout << "Was möchten Sie tuen?\n";
@@ -83,6 +83,9 @@ int main(int argc, char** argv) {
                 func::continueRoutine();
                 break;
             case 7: 
+                database.saveDatabase("Database.json"); 
+                break;
+            case 8: 
                 database.saveDatabase("Database.json"); 
                 break;
             default : 

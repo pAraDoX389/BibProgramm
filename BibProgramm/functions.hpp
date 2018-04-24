@@ -20,6 +20,9 @@
 #include <iomanip>
 #include <string>
 #include <limits> 
+#include <vector>
+
+#include <sstream>
 
 namespace func {
 
