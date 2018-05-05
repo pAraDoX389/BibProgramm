@@ -18,11 +18,20 @@
 #include <iomanip>
 #include <string>
 
-int input(int min, int max, int tries, std::string quest, int& input);
+namespace SE {
+    
+    int input(const int min, const int max, const int tries, 
+            const std::string quest, int& input);
 
-int input(float min, float max, int tries, std::string quest, float& input);
+    int input(const float min, const float max, const int tries, 
+            const std::string quest, float& input);
 
-int input(double min, double max, int tries, std::string quest, double& input);
+    int input(const double min, const double max, const int tries, 
+            const std::string quest, double& input);
+    
+}
+
+
 
 #endif /* INPUT_HPP */
 

@@ -23,6 +23,7 @@
 //eigene erstellte includes
 #include "database.hpp"
 #include "functions.hpp"
+#include "input.hpp"
 
 
 //globale Variabeln
@@ -32,6 +33,34 @@ int choice = 0;
 
 //------------------------------------------------------------------------------
 int main(int argc, char** argv) {
+    
+    {//Test der Überladung
+        int intVar {};
+        float floatVar {};
+        double doubleVar {};
+        
+        std::cout << "---Testaufgabe Überladung---" << std::endl << std::endl;
+        
+        std::cout << "Eingabetest einer int-Zahl:" << std::endl << std::endl;
+        SE::input(1, 8, 3, 
+                "Geben sie eine ganze Zahl zwischen 1 und 8 ein.\n", intVar);
+        std::cout << "\t" << typeid(intVar).name() << std::endl;
+        func::continueRoutine();
+        
+        std::cout << "Eingabetest einer float-Zahl:" << std::endl << std::endl;
+        SE::input(1.0, 8.0, 3, 
+                "Geben sie eine Kommazahl zwischen 1.0 und 8.0 ein.", floatVar);
+        std::cout << "\t" << typeid(floatVar).name() << std::endl;
+        func::continueRoutine();
+        
+        std::cout << "Eingabetest einer double-Zahl:" << std::endl << std::endl;
+        SE::input(1.0, 8.0, 3, 
+                "Geben sie eine Kommazahl zwischen 1.0 und 8.0 ein.", doubleVar);
+        std::cout << "\t" << typeid(doubleVar).name() << std::endl;
+        func::continueRoutine();
+        
+    }
+    
     Database& database = Database::getInstance();
     database.loadDatabase("Database.json");
     while (choice != 8) {
@@ -50,9 +79,8 @@ int main(int argc, char** argv) {
         std::cout << "6. Löschen\n";
         std::cout << "7. Programm speichern\n";
         std::cout << "8. Programm speichern und verlassen\n\n";
-        
-        std::cout << "凸(¬◡¬)凸" << std::endl;
-        
+
+      
         //Abfrage was gemacht werden soll
         std::cout << "Was möchten Sie tuen?\n";
         std::cin >> std::setw(1) >> choice;
