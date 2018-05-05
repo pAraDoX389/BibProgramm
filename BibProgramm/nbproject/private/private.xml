@@ -7,11 +7,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/database.cpp</file>
-            <file>file:/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/book.cpp</file>
-            <file>file:/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/database.hpp</file>
-            <file>file:/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/book.hpp</file>
+            <file>file:/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/functions.cpp</file>
+            <file>file:/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/input.cpp</file>
             <file>file:/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/main.cpp</file>
+            <file>file:/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/input.hpp</file>
         </group>
     </open-files>
 </project-private>

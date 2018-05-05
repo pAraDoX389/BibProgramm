@@ -33,7 +33,7 @@ class Book {
     int actual_;
     int quota_;
  public:
-    Book(std::string title = {}, std::string author = {}, int id = 0,
+    explicit Book(std::string title = {}, std::string author = {}, int id = 0,
         int actual = 0, int quota = 0);
     virtual~Book() = default;
     const std::string getTitle() const;

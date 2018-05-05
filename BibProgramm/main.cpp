@@ -28,13 +28,13 @@
 //globale Variabeln
 //------------------------------------------------------------------------------
 
-int main_var = 0;
+int choice = 0;
 
 //------------------------------------------------------------------------------
 int main(int argc, char** argv) {
     Database& database = Database::getInstance();
     database.loadDatabase("Database.json");
-    while (main_var != 8) {
+    while (choice != 8) {
         
         //Hauptmenü
         std::cout << "+----------------------+" << "\n";
@@ -51,14 +51,16 @@ int main(int argc, char** argv) {
         std::cout << "7. Programm speichern\n";
         std::cout << "8. Programm speichern und verlassen\n\n";
         
+        std::cout << "凸(¬◡¬)凸" << std::endl;
+        
         //Abfrage was gemacht werden soll
         std::cout << "Was möchten Sie tuen?\n";
-        std::cin >> std::setw(1) >> main_var;
+        std::cin >> std::setw(1) >> choice;
         std::cin.ignore();
         std::cout << std::endl;
            
         //Fallunterscheidung
-        switch (main_var) {
+        switch (choice) {
             case 1: 
                 database.showDatabase();
                 func::continueRoutine();

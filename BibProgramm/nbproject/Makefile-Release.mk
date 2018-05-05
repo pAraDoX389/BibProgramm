@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/_ext/29840e95/input.o \
 	${OBJECTDIR}/book.o \
 	${OBJECTDIR}/database.o \
 	${OBJECTDIR}/functions.o \
@@ -64,6 +65,11 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bibprogramm: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bibprogramm ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/_ext/29840e95/input.o: /home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/input.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/29840e95
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/29840e95/input.o /home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/input.cpp
 
 ${OBJECTDIR}/book.o: book.cpp 
 	${MKDIR} -p ${OBJECTDIR}
