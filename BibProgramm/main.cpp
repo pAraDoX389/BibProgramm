@@ -15,7 +15,6 @@
  * 
  */
 
-#include <cstdlib>
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -34,30 +33,43 @@ int choice = 0;
 //------------------------------------------------------------------------------
 int main(int argc, char** argv) {
     
-    {//Test der Überladung
+    {
+        //Test der Überladung
+        //um in main verwendet zu werden, müssten return-Werte ausgewertet werden
+        //
+        //Anmerkung: implizierte Typumwandlung kann zu Fehlern führen, 
+        //Implementierung wird haptsächlich an Hand der Referenz (hier: input)
+        //ausgewählt
+        
         int intVar {};
         float floatVar {};
         double doubleVar {};
         
         std::cout << "---Testaufgabe Überladung---" << std::endl << std::endl;
         
+        
         std::cout << "Eingabetest einer int-Zahl:" << std::endl << std::endl;
         SE::input(1, 8, 3, 
                 "Geben sie eine ganze Zahl zwischen 1 und 8 ein.\n", intVar);
-        std::cout << "\t" << typeid(intVar).name() << std::endl;
+        std::cout << "Typ = " << typeid(intVar).name();
+        std::cout << "\t" << "Eingabe = " << intVar << std::endl << std::endl;
         func::continueRoutine();
         
         std::cout << "Eingabetest einer float-Zahl:" << std::endl << std::endl;
         SE::input(1.0, 8.0, 3, 
                 "Geben sie eine Kommazahl zwischen 1.0 und 8.0 ein.", floatVar);
-        std::cout << "\t" << typeid(floatVar).name() << std::endl;
+        std::cout << "Typ = " << typeid(floatVar).name();
+        std::cout << "\t" << "Eingabe = " << floatVar << std::endl << std::endl;
         func::continueRoutine();
         
         std::cout << "Eingabetest einer double-Zahl:" << std::endl << std::endl;
         SE::input(1.0, 8.0, 3, 
                 "Geben sie eine Kommazahl zwischen 1.0 und 8.0 ein.", doubleVar);
-        std::cout << "\t" << typeid(doubleVar).name() << std::endl;
+        std::cout << "Typ = " << typeid(doubleVar).name();
+        std::cout << "\t" << "Eingabe = " << doubleVar << std::endl << std::endl;
         func::continueRoutine();
+        
+        system("clear");
         
     }
     
