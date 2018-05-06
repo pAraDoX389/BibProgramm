@@ -60,7 +60,7 @@ namespace SE {
      * @param max (float), Maximalwert der Eingabe
      * @param tries (int), Anzahl der Versuche
      * @param quest (std::string), Frage die ausgegeben wird
-     * @param input (float&), Referenz auf int, hier wird Eingabe zurückgegeben, 
+     * @param input (float&), Referenz auf float, hier wird Eingabe zurückgegeben, 
      * in input wird nur geschrieben, wenn Eingabe richtig war 
      * @return (int), 0 wenn Eingabe im Wertebereich, 1 wenn Anzahl der Versuche überschritten,
      * 2 bei fehlerhafter Eingabe
@@ -104,7 +104,7 @@ namespace SE {
      * @param max (double), Maximalwert der Eingabe
      * @param tries (int), Anzahl der Versuche
      * @param quest (std::string), Frage die ausgegeben wird
-     * @param input (double&), Referenz auf int, hier wird Eingabe zurückgegeben, 
+     * @param input (double&), Referenz auf double, hier wird Eingabe zurückgegeben, 
      * in input wird nur geschrieben, wenn Eingabe richtig war 
      * @return (int), 0 wenn Eingabe im Wertebereich, 1 wenn Anzahl der Versuche überschritten,
      * 2 bei fehlerhafter Eingabe
@@ -140,5 +140,4 @@ namespace SE {
             return 2;
         }
     }
-    
 }
