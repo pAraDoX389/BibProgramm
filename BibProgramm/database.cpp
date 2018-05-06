@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+
 #include "database.hpp"
 #include "functions.hpp"
 
@@ -135,7 +136,7 @@ int Database::showDatabase() {
  * @return id des Buches, Rückgabe vom Typ int 
  */
 int Database::askForID() {
-    int id ;
+    int id {};
   
     system("clear");  
     do {
@@ -237,7 +238,7 @@ int Database::returnBook() {
         choice = func::questionYesNo("Wollen Sie dieses Buch zurückgeben?");
         if (choice == 0) {
             if (database_.at(id).getActual() <= database_.at(id).getQuota() && 
-                    database_.at(id).getQuota() != database_.at(id).getActual()) {
+                database_.at(id).getQuota() != database_.at(id).getActual()) {
                 database_.at(id).setActual(database_.at(id).getActual()+1);
                 std::cout << "Ein Exemplar zurückgegeben." << std::endl;
                 std::cout << "Noch " << database_.at(id).getActual() 
@@ -266,7 +267,7 @@ int Database::returnBook() {
  */
 int Database::interactiveClear() {
     std::string choiceString {};
-    int id, choiceInt {};
+    int id {}, choiceInt {};
     
     while (1) {
         int success = func::questionInt("Löschen von\n\t (1) einem Buch\n\t (2) ganzer Datenbank ? ",

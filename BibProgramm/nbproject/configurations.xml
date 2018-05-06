@@ -7,7 +7,7 @@
       <itemPath>book.hpp</itemPath>
       <itemPath>database.hpp</itemPath>
       <itemPath>functions.hpp</itemPath>
-      <itemPath>/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/input.hpp</itemPath>
+      <itemPath>/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/softwareEngineering.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -19,8 +19,8 @@
       <itemPath>book.cpp</itemPath>
       <itemPath>database.cpp</itemPath>
       <itemPath>functions.cpp</itemPath>
-      <itemPath>/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/input.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
+      <itemPath>/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/softwareEngineering.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -48,12 +48,12 @@
           <standard>11</standard>
         </ccTool>
       </compileType>
-      <item path="/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/input.cpp"
+      <item path="/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/softwareEngineering.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/input.hpp"
+      <item path="/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/softwareEngineering.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -93,12 +93,12 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/input.cpp"
+      <item path="/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/softwareEngineering.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/input.hpp"
+      <item path="/home/kasslernetbook/NetBeansProjects/BibProgramm/BibProgramm/softwareEngineering.hpp"
             ex="false"
             tool="3"
             flavor2="0">
