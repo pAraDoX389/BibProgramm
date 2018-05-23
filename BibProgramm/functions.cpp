@@ -101,6 +101,7 @@ void continueRoutine() {
         std::cin.clear();
         answer = std::cin.get();
     } while (!isspace(answer));
+    system("clear");
 }
 
 }
