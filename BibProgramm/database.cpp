@@ -81,7 +81,8 @@ int Database::saveDatabase(const std::string savePath) {
  * 
  * @loadPath (std::string), Pfad ist relativ zum Projektordner
  * 
- * @return 0 wenn erfolgreich
+ * @return 0 wenn erfolgreich,
+ *         1 wenn keine Database vorhanden
  */
 int Database::loadDatabase(const std::string loadPath) {
     
@@ -90,6 +91,13 @@ int Database::loadDatabase(const std::string loadPath) {
     
     std::ifstream file;
     file.open(loadPath);
+    
+    //Wenn keine Datenbank vorhanden oder ein anderer Fehler beim öffnen 
+    //auftritt, dann wird hier abgebrochen
+    if (file.fail()) {
+        return 1;
+    }
+    
     file >> loadDatabase;
     file.close();
     
