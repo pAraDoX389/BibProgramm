@@ -54,7 +54,7 @@ Database& Database::getInstance() {
 */ 
 int Database::saveDatabase(const std::string savePath) {
     
-    auto data = Database::getInstance().database_;
+    auto data = this->getInstance().database_;
     json saveDatabase = {}, saveBook = {};
     
     for (auto it = data.begin(); it != data.end(); it++) {
@@ -86,7 +86,7 @@ int Database::saveDatabase(const std::string savePath) {
  */
 int Database::loadDatabase(const std::string loadPath) {
     
-    auto data = Database::getInstance().database_;
+    auto data = this->getInstance().database_;
     json loadDatabase;
     
     std::ifstream file;
@@ -193,8 +193,8 @@ int Database::lendBook() {
     std::string choice;
     int id;
     
-    id = Database::askForID();
-    int check = Database::showElementByID(id);
+    id = this->askForID();
+    int check = this->showElementByID(id);
     if (check != 0) {
                 std::cout << "Ausleihen abgebrochen!" << std::endl;
                 return 1;
@@ -235,8 +235,8 @@ int Database::lendBook() {
 int Database::returnBook() {
     int choice {}, id {};
     
-    id = Database::askForID();
-    int check = Database::showElementByID(id);
+    id = this->askForID();
+    int check = this->showElementByID(id);
     if (check != 0) {
                 std::cout << "Zurückgeben abgebrochen!" << std::endl;
                 return 1;
@@ -285,7 +285,7 @@ int Database::interactiveClear() {
         } else if (success == 1) {
             std::cout << "Eingabe stimmt mit keiner möglichen Antwort überein!"
                     << std::endl << std::endl;
-        } else {
+        } else { 
             std::cin.ignore();
             std::cin.sync();
             std::cin.clear();
@@ -295,8 +295,8 @@ int Database::interactiveClear() {
     
     while (1) {
         if (choiceInt == 1) {
-            id = Database::askForID();
-            int check = Database::showElementByID(id);
+            id = this->askForID();
+            int check = this->showElementByID(id);
             if (check != 0) {
                 std::cout << "Löschen abgebrochen!" << std::endl;
                 return 1;
@@ -354,3 +354,24 @@ const std::vector<int> Database::getKeys() {
     
     return keys;
 }
+
+/**
+ * 
+ * @param name (std::string), Name des gesuchten Buches
+ * 
+ * @return ID des gesuchten Buches (int),
+ *         -1, wenn kein Buch gefunden
+ */
+const int Database::findByName(const std::string name) {
+    auto it = std::find_if(this->database_.begin(),this->database_.end(), 
+            [name](const std::pair<const int, Book> & t) { 
+                   return t.second.getTitle() == name;
+    });       
+    
+    if (it == this->database_.end()) {
+        return -1;
+    } 
+            
+    return it->first;
+}
+

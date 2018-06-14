@@ -47,6 +47,7 @@ private:
      int returnBook();
      int interactiveClear();
      const std::vector<int> getKeys();
+     const int findByName(const std::string name);
 };
 
 #endif /* DATABASE_HPP */

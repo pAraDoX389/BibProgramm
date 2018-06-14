@@ -19,8 +19,6 @@
 #include <iomanip>
 #include <string>
 
-//TODO Fehler in json, wenn das fertig kompilierte Programm gestartet wird, 
-//wahrscheinlich, weil Database nicht vorhanden, hierFehlersuche ansetzen
 
 //eigene erstellte includes
 #include "database.hpp"
@@ -112,6 +110,12 @@ int main(int argc, char** argv) {
     Database& database = Database::getInstance();
     database.loadDatabase("Database.json");
     while (choice != 8) {
+        
+//        {
+//            //nur ein Test für findByName
+//            auto nr = database.findByName("1984");
+//            std::cout << nr << std::endl;
+//        } 
         
         //Hauptmenü
         std::cout << "+----------------------+" << "\n";
